@@ -1,0 +1,26 @@
+.head2{
+color: blue;
+display: flex;
+justify-content: center;
+}
+
+#slider{
+    max-width: 700px;
+    height: 500px;
+    position: relative;
+    margin: 30px auto;
+    cursor: ew-resize;
+}
+
+.imageClass{
+    width: 100%;
+ position: absolute;
+ inset: 0;
+ height: 100%;
+ object-fit: cover  ;
+}
+
+.active{
+    z-index: 100;
+    /* clip-path: inset(0 0 0 60%); */
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const HeaderPatient = () => {
+const HeaderPatient = ({LogOut}) => {
   return (
     <div>
          <div>
@@ -32,7 +32,7 @@ const HeaderPatient = () => {
                                         Accounts
                                     </a>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a className="dropdown-item" href="blog.html">Accounts</a>
+                                        <button className="dropdown-item" onClick={LogOut} >LogOut</button>
                                         {/* <a className="dropdown-item" href="single-blog.html">Single blog</a> */}
                                     </div>
                                 </li>

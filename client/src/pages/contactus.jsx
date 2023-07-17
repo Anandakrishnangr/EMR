@@ -6,9 +6,7 @@ import Contact from '../components/contact'
 function Contactus() {
   return (
     <div>
-        <HeaderPublic/>
         <Contact/>
-        <FooterPublic/>
     </div>
   )
 }

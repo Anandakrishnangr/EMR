@@ -5,12 +5,13 @@ var app = express()
 app.use(express.json());
 const multer = require('multer')()
 // Controller Starts
-app.post('/registerDoctor',multer.array('file'),(req,res)=>{
-    console.log(req.body);
-    const { name, gender } = req.body.data;
-
+app.post('/registerDoctor', multer.array('file'), (req, res) => {
+  console.log(req.body);
+  const { Email, LastName, FirstName, Gender, Address, MobileNo, Experience, Age } = req.body.data;
+  return
   // Construct the SQL query
-  const sql = `INSERT INTO users (name, gender) VALUES ('${name}', '${gender}')`;
+  const sql = `INSERT INTO users (Email, LastName, FirstName, Gender, Address, MobileNo, Experience, Age )
+   VALUES ('${Email}', '${LastName}', '${FirstName}', '${Gender}', '${Address}', '${MobileNo}', '${Experience}', '${Age}')`;
 
   // Execute the SQL query
   connection.query(sql, (err, result) => {

@@ -9,7 +9,6 @@ import HeaderPatient from '../../components/headerPatient';
 const PatientHome = () => {
   return (
     <div>
-  <HeaderPatient/>
 
     <section className="banner_part">
         <div className="container">
@@ -95,7 +94,6 @@ const PatientHome = () => {
 
   
 
-  <FooterPublic/>
 
 
     </div>

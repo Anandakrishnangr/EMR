@@ -2,6 +2,7 @@ var app = require('express')()
 const connection = require('../config/db_connection')
 let bcrypt = require('bcrypt')
 let jwt = require("jsonwebtoken")
+const { ProtectedRoutes } = require('../middlewares/authentication')
 
 app.post('/login', (req, res) => {
   let { username, password } = { ...req.body }
@@ -29,4 +30,8 @@ app.post('/login', (req, res) => {
   })
 })
 
+app.get('/fetchUser',ProtectedRoutes,(req,res,next)=>{
+res.send(200)
+
+})
 module.exports = app

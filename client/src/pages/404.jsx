@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom'
 const NotFound404 = () => {
     let navigate = useNavigate()
 
-    useEffect(() => {
-        setTimeout(() => {
-            navigate("/")
-        }, 2000);
-        return () => {
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         navigate("/")
+    //     }, 2000);
+    //     return () => {
 
-        }
-    }, [])
+    //     }
+    // }, [])
 
 
     return (

@@ -32,19 +32,32 @@ function App() {
 
   const [Loading, setLoading] = useState(true)
   useEffect(() => {
-    axios.get('/auth/fetchUser').then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.log(err);
-    }).finally((ee) => {
-      console.log(ee);
+    if (localStorage.getItem('user')?.length) {
+      axios.get(`/auth/fetchUser`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('user')}`,
+        },
+      }).then((res) => {
+        setUser((prev) => ({ ...prev, isAuthenticated: true }))
+        console.log(res);
+      }).catch((err) => {
+        console.log('object');
+        console.log(err);
+      }).finally((ee) => {
+        console.log('ee');
+        setLoading(false)
+      })
+    } else {
       setLoading(false)
-    })
+    }
     return () => {
 
     }
   }, [])
-
+  const LogOut = () => {
+    localStorage.clear()
+    setUser((prev) => ({ ...prev, isAuthenticated: false }))
+  }
   return (
     <div>
 
@@ -53,25 +66,36 @@ function App() {
           Loading ? Loading : <>
 
             {User.isAuthenticated ?
-              <HeaderPatient />
+              <HeaderPatient LogOut={LogOut} />
               :
               <>
                 <HeaderPublic />
               </>
             }
-            <Routes>
-              <Route path="/" exact={true} element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/userRegiteration" element={<UserRegister />} />
-              <Route path="/doctorRegister" element={<DoctorRegister />} />
-              <Route path="/feedback" element={<Feedback />} />
-              <Route path="/verify" element={<Verify />} />
-              <Route path="/contact" element={<Contactus />} />
-              <Route path="*" element={<NotFound404 />} />
-              <Route path="/unauthorized" element={<Unauthorized />} />
-              <Route path="/patient Home" element={<PatientHome userAccess={['patient']} />} />
-            </Routes>
+            {User.isAuthenticated == false ?
+              <Routes>
+                <Route path="/" exact={true} element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/userRegiteration" element={<UserRegister />} />
+                <Route path="/doctorRegister" element={<DoctorRegister />} />
+                <Route path="/verify" element={<Verify />} />
+                <Route path="/feedback" element={<Feedback />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contactus />} />
+              </Routes>
+              :
+              <Routes>
+
+                <Route path="/feedback" element={<Feedback />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contactus />} />
+                <Route path="*" element={<NotFound404 />} />
+                <Route path="/unauthorized" element={<Unauthorized />} />
+                <Route path="/patient Home" element={<PatientHome userAccess={['patient']} />} />
+              </Routes>
+            }
+
+
             {User.isAuthenticated ?
               <FooterPublic />
               :

@@ -4,8 +4,7 @@ import HeaderPublic from '../components/headerPublic'
 
 const Verify = () => {
   return (<>
-    <HeaderPublic/>
-    <div className='container mt-5 pt-5 '
+    <div style={{height:'100vh'}} className='container mt-5 pt-5 '
     
     >
       

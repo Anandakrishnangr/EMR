@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authRoutes)
 app.use('/user',userRoute)
-
+app.use('/register',accountRoutes)
 // Start the server
 
 app.listen(process.env.server_port, () => {
